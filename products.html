@@ -29,7 +29,6 @@
         overflow-x: hidden;
       }
 
-      /* NAVBAR (Styling retained) */
       .navbar {
         position: fixed;
         top: 0;
@@ -58,7 +57,6 @@
       }
 
       .logo-container img {
-        /* Placeholder for NLOC Labs.png */
         height: 32px;
         width: auto;
       }
@@ -92,9 +90,6 @@
         color: white !important;
       }
 
-      /* DESKTOP/LARGE SCREEN STYLES (Base) */
-
-      /* Extra Section Header */
       .extra-section {
         margin-top: 80px;
         min-height: 200px;
@@ -108,7 +103,7 @@
       }
 
       .extra-section h1 {
-        font-size: 40px; /* Base size */
+        font-size: 40px;
         font-weight: 900;
         margin-bottom: 40px;
         color: #fff;
@@ -117,7 +112,7 @@
       }
 
       .extra-section p {
-        font-size: 20px; /* Base size */
+        font-size: 20px;
         line-height: 1.8;
         max-width: 1200px;
         color: #ccc;
@@ -128,19 +123,17 @@
         font-weight: 800;
       }
 
-      /* Product Grid Layout */
       .products-grid {
         max-width: 1300px;
         margin: 0 auto;
         padding: 0 20px;
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* Two columns on desktop */
+        grid-template-columns: repeat(2, 1fr);
         gap: 40px;
         padding-top: 40px;
         padding-bottom: 80px;
       }
 
-      /* Card Styling */
       .products-grid .card {
         min-height: 450px;
         border-radius: 16px;
@@ -155,19 +148,17 @@
 
       .products-grid .card:hover {
         transform: translateY(-10px);
-        /* Green hover shadow */
         box-shadow: 0 20px 50px rgba(0, 255, 60, 0.3);
       }
 
-      /* Hover adjustments for specific pins to match color */
       .products-grid .card.totara:hover {
-        box-shadow: 0 20px 50px rgba(255, 120, 0, 0.4); /* Orange shadow */
+        box-shadow: 0 20px 50px rgba(255, 120, 0, 0.4);
       }
       .products-grid .card.kowhai:hover {
-        box-shadow: 0 20px 50px rgba(255, 255, 0, 0.4); /* Yellow shadow */
+        box-shadow: 0 20px 50px rgba(255, 255, 0, 0.4);
       }
       .products-grid .card.matai:hover {
-        box-shadow: 0 20px 50px rgba(100, 150, 255, 0.25); /* Blue/Silver shadow */
+        box-shadow: 0 20px 50px rgba(100, 150, 255, 0.25);
       }
 
       .card .card__image {
@@ -176,7 +167,6 @@
         background-size: cover;
         background-position: center;
         border-radius: 16px 16px 0 0;
-        /* Default style for image placeholder text */
         display: flex;
         align-items: center;
         justify-content: center;
@@ -185,12 +175,11 @@
         color: rgba(255, 255, 255, 0.8);
       }
 
-      /* Specific text style adjustments for white/light pins */
       .card.kowhai .card__image {
-        color: #333; /* Darker text for yellow background */
+        color: #333;
       }
       .card.matai .card__image {
-        color: #333; /* Darker text for white background */
+        color: #333;
       }
 
       .card .card__content {
@@ -203,7 +192,7 @@
       }
 
       .card h2 {
-        font-size: 32px; /* Base size for card title */
+        font-size: 32px;
         font-weight: 700;
         color: #fff;
         text-transform: capitalize;
@@ -211,34 +200,31 @@
       }
 
       .card p {
-        font-size: 18px; /* Base size for card description */
+        font-size: 18px;
         color: #ccc;
         line-height: 1.5;
         margin: 0;
       }
 
-      /* NEW: Price Tag Styling */
       .card__price {
-        margin-top: auto; /* Push price to the bottom */
+        margin-top: auto;
         font-size: 36px;
         font-weight: 900;
-        color: #2fff00; /* Green/Neon color for visibility */
+        color: #2fff00;
         letter-spacing: 1px;
         padding-top: 15px;
       }
 
-      /* Color adjustments for prices */
       .card.totara .card__price {
         color: #ff8c00;
-      } /* Darker Orange */
+      }
       .card.kowhai .card__price {
         color: #ffdd00;
-      } /* Bright Yellow */
+      }
       .card.matai .card__price {
         color: #87cefa;
-      } /* Light Blue (to contrast with white pin) */
+      }
 
-      /* FOOTER (Styling retained) */
       .footer {
         width: 100%;
         padding: 50px 20px;
@@ -293,10 +279,9 @@
         margin-bottom: 10px;
       }
 
-      /* NEW: Safety Warning Section Styling */
       .safety-section {
         padding: 60px 50px;
-        background: #1a0000; /* Dark red/danger background */
+        background: #1a0000;
         border-top: 5px solid #ff0000;
         border-bottom: 5px solid #ff0000;
         color: #ffcccc;
@@ -306,7 +291,7 @@
       }
 
       .safety-section h2 {
-        color: #ff0000; /* Bright red title */
+        color: #ff0000;
         font-size: 36px;
         font-weight: 900;
         text-transform: uppercase;
@@ -349,15 +334,12 @@
         text-decoration: none;
       }
 
-      /* MOBILE SPECIFIC ADJUSTMENTS (Max width 768px) */
       @media (max-width: 768px) {
-        /* Layout Adjustments */
         .products-grid {
-          grid-template-columns: 1fr; /* Single column on mobile */
+          grid-template-columns: 1fr;
           gap: 25px;
         }
 
-        /* Navbar Text Size */
         .logo-container span {
           font-size: 20px !important;
         }
@@ -369,39 +351,35 @@
           padding: 8px 10px;
         }
 
-        /* Header (Extra Section) Font Sizes */
         .extra-section {
-          padding: 40px 20px 20px 20px; /* Reduced padding on mobile */
+          padding: 40px 20px 20px 20px;
         }
         .extra-section h1 {
-          font-size: 32px; /* Reduced major heading size */
+          font-size: 32px;
           margin-bottom: 20px;
         }
         .extra-section p {
-          font-size: 16px; /* Reduced paragraph size */
+          font-size: 16px;
           line-height: 1.6;
         }
 
-        /* Card Font Sizes */
         .card .card__content {
-          padding: 15px; /* Reduced card padding */
+          padding: 15px;
           gap: 8px;
         }
         .card h2 {
-          font-size: 24px; /* Reduced card title size */
+          font-size: 24px;
         }
         .card p {
-          font-size: 15px; /* Reduced card description size */
+          font-size: 15px;
         }
 
-        /* NEW: Mobile Price Tag Size */
         .card__price {
-          font-size: 28px; /* Adjusted price size for mobile */
+          font-size: 28px;
           padding-top: 10px;
         }
       }
 
-      /* NEW: Safety Section Mobile Adjustments */
       .safety-section h2 {
         font-size: 28px;
       }
@@ -465,7 +443,6 @@
   </head>
 
   <body>
-    <!-- Navbar placeholder assumes 'NLOC Labs.png' exists in the environment -->
     <div class="navbar">
       <div class="logo-container">
         <a href="index.html"
@@ -486,7 +463,6 @@
       </div>
     </div>
 
-    <!-- Intro Section: Based on the "Product Page Intro" content -->
     <section class="extra-section">
       <h1>Our Products.</h1>
       <p>
@@ -502,17 +478,12 @@
       </p>
     </section>
 
-    <!-- Product Grid Section -->
     <section>
       <div class="products-grid">
-        <!-- 1. Kauri Pin (Green) -->
         <div class="card kauri">
           <div
             class="card__image"
-            style="
-              /* Vibrant Green Gradient */
-              background-image: url(kauripin.png);
-            "
+            style="background-image: url(kauripin.png)"
           ></div>
           <div class="card__content">
             <h2>Kauri Pin</h2>
@@ -524,14 +495,10 @@
           </div>
         </div>
 
-        <!-- 2. Totara Pin (Orange) -->
         <div class="card totara">
           <div
             class="card__image"
-            style="
-              /* Deep Orange Gradient */
-              background-image: url(totarapin.png);
-            "
+            style="background-image: url(totarapin.png)"
           ></div>
           <div class="card__content">
             <h2>Totara Pin</h2>
@@ -543,14 +510,10 @@
           </div>
         </div>
 
-        <!-- 3. Kowhai Pin (Yellow) -->
         <div class="card kowhai">
           <div
             class="card__image"
-            style="
-              /* Sunny Yellow Gradient (Light background) */
-              background-image: url(kowhaipin.png);
-            "
+            style="background-image: url(kowhaipin.png)"
           ></div>
           <div class="card__content">
             <h2>Kowhai Pin</h2>
@@ -562,14 +525,10 @@
           </div>
         </div>
 
-        <!-- 4. Matai Pin (White/Blue) -->
         <div class="card matai">
           <div
             class="card__image"
-            style="
-              /* Metallic White/Silver Gradient (to show up on dark background) */
-              background-image: url(mataipin.png);
-            "
+            style="background-image: url(mataipin.png)"
           ></div>
           <div class="card__content">
             <h2>Matai Pin</h2>
@@ -583,7 +542,6 @@
       </div>
     </section>
 
-    <!-- Safety Warning Section -->
     <section class="safety-section">
       <h2>Product Safety and Compliance Notice</h2>
       <p>
@@ -617,7 +575,6 @@
       </ul>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-brand">
