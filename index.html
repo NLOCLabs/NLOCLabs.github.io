@@ -29,7 +29,6 @@
         overflow-x: hidden;
       }
 
-      /* NAVBAR */
       .navbar {
         position: fixed;
         top: 0;
@@ -91,7 +90,6 @@
         color: white !important;
       }
 
-      /* VIDEO SECTION (Hero) */
       .video-section {
         position: relative;
         width: 100%;
@@ -112,7 +110,7 @@
 
       .team-pin-container {
         position: absolute;
-        bottom: 120px; /* Base position */
+        bottom: 120px;
         left: 20px;
         display: flex;
         flex-direction: column;
@@ -127,7 +125,7 @@
       }
 
       .team-pin-row span {
-        font-size: 150px; /* Base size */
+        font-size: 150px;
         font-weight: 900;
         text-transform: uppercase;
         display: inline-block;
@@ -138,7 +136,6 @@
           12px 12px 0 rgba(0, 0, 0, 0.18);
       }
 
-      /* Color styling for 'TEAM' */
       .team-pin-row.team span:nth-child(1) {
         color: #ff8b3d;
       }
@@ -162,12 +159,9 @@
         z-index: 10;
       }
 
-      /* Original CSS (Lines 185-205) modified: */
-      /* ... */
       .cta-button-container a {
-        /* CHANGED from button to a */
         font-family: inherit;
-        font-size: 28px; /* Base size */
+        font-size: 28px;
         font-weight: 700;
         background: #1e9f01;
         color: white;
@@ -179,44 +173,36 @@
         overflow: hidden;
         transition: all 0.2s;
         cursor: pointer;
-        text-decoration: none; /* Added to remove underline from <a> */
+        text-decoration: none;
       }
 
-      /* CTA Button Hover Animations (retained) */
       .cta-button-container a span {
-        /* CHANGED from button to a */
         display: block;
         margin-left: 0.5em;
         transition: all 0.3s ease-in-out;
       }
 
       .cta-button-container a svg {
-        /* CHANGED from button to a */
         display: block;
         transform-origin: center center;
         transition: transform 0.3s ease-in-out;
       }
 
       .cta-button-container a:hover .svg-wrapper {
-        /* CHANGED from button to a */
         animation: fly-1 0.6s ease-in-out infinite alternate;
       }
 
       .cta-button-container a:hover svg {
-        /* CHANGED from button to a */
         transform: translateX(1em) rotate(45deg) scale(1.1);
       }
 
       .cta-button-container a:hover span {
-        /* CHANGED from button to a */
         transform: translateX(4em);
       }
 
       .cta-button-container a:active {
-        /* CHANGED from button to a */
         transform: scale(0.95);
       }
-      /* ... */
 
       @keyframes fly-1 {
         from {
@@ -227,7 +213,6 @@
         }
       }
 
-      /* FEATURE SCROLL SECTION */
       .feature-scroll-section {
         position: relative;
         min-height: 500vh;
@@ -253,7 +238,6 @@
         padding-left: 20px;
       }
 
-      /* Cards */
       .container .card {
         flex: 0 0 50vw;
         height: 100%;
@@ -265,10 +249,9 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
-      /* Default mobile card width adjustment for horizontal scroll */
       @media (max-width: 768px) {
         .container .card {
-          flex: 0 0 85vw; /* Make cards wider on mobile */
+          flex: 0 0 85vw;
         }
       }
 
@@ -276,7 +259,6 @@
         transform: translateY(-10px);
         box-shadow: 0 20px 50px rgba(0, 255, 60, 0.3);
       }
-      /* Card Image Gradients (retained) */
       .card .card__image {
         height: 60%;
         background-size: cover;
@@ -310,19 +292,18 @@
       }
 
       .card .card__title {
-        font-size: 32px; /* Base size */
+        font-size: 32px;
         font-weight: 700;
         color: #fff;
         text-transform: capitalize;
       }
 
       .card .card__describe {
-        font-size: 18px; /* Base size */
+        font-size: 18px;
         color: #ccc;
         line-height: 1.5;
       }
 
-      /* EXTRA SECTION (Welcome) */
       .extra-section {
         min-height: 400px;
         padding: 80px 50px;
@@ -335,7 +316,7 @@
       }
 
       .extra-section h1 {
-        font-size: 40px; /* Base size */
+        font-size: 40px;
         font-weight: 900;
         margin-bottom: 40px;
         color: #fff;
@@ -344,7 +325,7 @@
       }
 
       .extra-section p {
-        font-size: 20px; /* Base size */
+        font-size: 20px;
         line-height: 1.8;
         max-width: 1200px;
         color: #ccc;
@@ -355,7 +336,6 @@
         font-weight: 800;
       }
 
-      /* COMFORT SECTION (Commitment) */
       .comfort-section {
         min-height: 350px;
         padding: 80px 50px;
@@ -368,7 +348,7 @@
       }
 
       .comfort-section h2 {
-        font-size: 40px; /* Base size */
+        font-size: 40px;
         font-weight: 900;
         margin-bottom: 40px;
         color: #fff;
@@ -377,13 +357,12 @@
       }
 
       .comfort-section p {
-        font-size: 20px; /* Base size */
+        font-size: 20px;
         line-height: 1.8;
         max-width: 1200px;
         color: #ccc;
       }
 
-      /* FOOTER (retained) */
       .footer {
         width: 100%;
         padding: 50px 20px;
@@ -444,9 +423,7 @@
         text-decoration: none;
       }
 
-      /* MOBILE SPECIFIC ADJUSTMENTS (Max width 768px) */
       @media (max-width: 768px) {
-        /* NAVBAR */
         .logo-container span {
           font-size: 20px !important;
         }
@@ -458,50 +435,46 @@
           padding: 8px 10px;
         }
 
-        /* HERO SECTION (Video Text) */
         .team-pin-container {
-          bottom: 100px; /* Adjusted position for smaller screens */
+          bottom: 100px;
           left: 15px;
         }
 
         .team-pin-row span {
-          font-size: 80px; /* Significantly reduced font size for mobile */
+          font-size: 80px;
           letter-spacing: -3px;
         }
 
-        /* CTA Button */
         .cta-button-container button {
-          font-size: 20px; /* Reduced button text size */
+          font-size: 20px;
           padding: 0.5em 1em;
         }
 
-        /* WELCOME/COMMITMENT TEXT BLOCKS */
         .extra-section,
         .comfort-section {
-          padding: 40px 20px; /* Reduced section padding */
+          padding: 40px 20px;
           min-height: auto;
         }
         .extra-section h1,
         .comfort-section h2 {
-          font-size: 32px; /* Reduced major heading size */
+          font-size: 32px;
           margin-bottom: 20px;
         }
         .extra-section p,
         .comfort-section p {
-          font-size: 16px; /* Reduced paragraph size */
+          font-size: 16px;
           line-height: 1.6;
         }
 
-        /* HORIZONTAL SCROLL CARDS */
         .card .card__content {
-          padding: 15px; /* Reduced card padding */
+          padding: 15px;
           gap: 8px;
         }
         .card .card__title {
-          font-size: 24px; /* Reduced card title size */
+          font-size: 24px;
         }
         .card .card__describe {
-          font-size: 15px; /* Reduced card description size */
+          font-size: 15px;
         }
       }
     </style>
@@ -675,7 +648,7 @@
           <a href="products.html">Products</a>
           <a href="#">Winning House</a>
           <a href="about.html">About</a>
-          <a href="test.html">Contact</a>
+          <a href="contact.html">Contact</a>
           <a href="privacypolicy.html">Privacy Policy</a>
         </div>
 
@@ -687,57 +660,39 @@
       const scrollVideo = document.getElementById("scrollVideo");
       let videoStarted = false;
 
-      /* ---------------------------
-			Start video after 5px scroll
-		----------------------------- */
       function triggerVideoOnScroll() {
         if (window.scrollY >= 5 && !videoStarted) {
           videoStarted = true;
 
           scrollVideo.play().catch(() => {
-            // If autoplay blocked, try again on next scroll
             setTimeout(() => scrollVideo.play(), 100);
           });
 
-          // Once triggered, remove this listener
           window.removeEventListener("scroll", triggerVideoOnScroll);
         }
       }
 
       window.addEventListener("scroll", triggerVideoOnScroll);
 
-      /* ---------------------------
-			Prevent pausing
-		----------------------------- */
       scrollVideo.addEventListener("pause", () => {
-        // Only allow pausing if video has ended
         if (!scrollVideo.ended) {
           scrollVideo.play();
         }
       });
 
-      /* ---------------------------
-			Freeze on final frame
-		----------------------------- */
       scrollVideo.addEventListener("ended", () => {
         scrollVideo.pause();
-        scrollVideo.currentTime = scrollVideo.duration; // lock final frame
-        scrollVideo.style.pointerEvents = "none"; // disable controls fully
+        scrollVideo.currentTime = scrollVideo.duration;
+        scrollVideo.style.pointerEvents = "none";
       });
 
-      /* Prevent right-click save/misclick pause */
       scrollVideo.addEventListener("contextmenu", (e) => e.preventDefault());
-
-      /* ---------------------------
-			HORIZONTAL SCROLL SYSTEM
-		----------------------------- */
 
       const scrollSection = document.querySelector(".feature-scroll-section");
       const container = document.querySelector(".container.scroll-1");
       const sticky = document.querySelector(".scroll-sticky-wrapper");
 
       function updateHorizontalScroll() {
-        // Check if on a mobile-sized screen
         const isMobile = window.innerWidth <= 768;
 
         const sectionTop = scrollSection.offsetTop;
@@ -768,7 +723,6 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // UI elements (assumes these exist in your HTML)
         const footerCopy = document.querySelector(".footer-copy");
         const modal = document.getElementById("snakeModal");
         const canvas = document.getElementById("snakeCanvas");
@@ -777,20 +731,17 @@
         const gameOverMessage = document.getElementById("gameOverMessage");
         const closeBtn = document.getElementById("closeSnake");
 
-        // Settings
-        const SPEED = 9; // moves per second (user requested)
-        const GRID_COUNT = 25; // 25x25 grid for medium square
-        const MAX_SIZE = 600; // maximum px for big screens
-        const PADDING = 40; // page padding used when sizing modal canvas
+        const SPEED = 9;
+        const GRID_COUNT = 25;
+        const MAX_SIZE = 600;
+        const PADDING = 40;
 
-        // Game state (will be reinitialized)
         let cellSize, canvasSize;
         let snake, dx, dy, apple, score;
         let gameStarted, gameOver;
         let rafId = null;
         let lastTime = 0;
 
-        // Prevent body scroll when modal open
         function disableBodyScroll() {
           document.body.style.overflow = "hidden";
         }
@@ -798,9 +749,7 @@
           document.body.style.overflow = "";
         }
 
-        // Resize canvas so it is square and fits viewport; ensure it's an integer multiple of grid
         function resizeCanvasToFit() {
-          // medium square: use 80% width but respect height and max size
           const availableW = window.innerWidth - PADDING;
           const availableH = window.innerHeight - PADDING;
           const preferred = Math.min(
@@ -809,21 +758,17 @@
             MAX_SIZE
           );
 
-          // compute cellSize as floor(preferred / GRID_COUNT) so grid fits exactly
-          const cs = Math.max(4, Math.floor(preferred / GRID_COUNT)); // minimum cell size 4px
+          const cs = Math.max(4, Math.floor(preferred / GRID_COUNT));
           const size = cs * GRID_COUNT;
 
           cellSize = cs;
           canvasSize = size;
           canvas.width = canvasSize;
           canvas.height = canvasSize;
-
-          // optional: style to center visually (your modal CSS already handles this)
           canvas.style.width = canvasSize + "px";
           canvas.style.height = canvasSize + "px";
         }
 
-        // Spawn apple in a cell not occupied by snake
         function spawnApple() {
           const cols = canvas.width / cellSize;
           const rows = canvas.height / cellSize;
@@ -831,7 +776,6 @@
           while (true) {
             const ax = Math.floor(Math.random() * cols) * cellSize;
             const ay = Math.floor(Math.random() * rows) * cellSize;
-            // Ensure not on snake
             let collision = false;
             for (let seg of snake) {
               if (seg.x === ax && seg.y === ay) {
@@ -845,23 +789,19 @@
             }
             tries++;
             if (tries > 500) {
-              // Safety fallback: if board is nearly full, just place anyway
               apple = { x: ax, y: ay };
               return;
             }
           }
         }
 
-        // Initialize or reset game state
         function initGameState() {
           resizeCanvasToFit();
-          // start snake with a single centered segment
           snake = [];
           const startX = Math.floor(GRID_COUNT / 2) * cellSize;
           const startY = Math.floor(GRID_COUNT / 2) * cellSize;
           snake.push({ x: startX, y: startY });
 
-          // initial direction: stationary until first keypress
           dx = 0;
           dy = 0;
 
@@ -881,13 +821,11 @@
           rafId = requestAnimationFrame(gameLoop);
         }
 
-        // Clear shadows when not drawing neon elements
         function clearShadows() {
           ctx.shadowBlur = 0;
           ctx.shadowColor = "transparent";
         }
 
-        // Draw functions
         function drawBackground() {
           ctx.fillStyle = "#000";
           ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -909,7 +847,6 @@
           ctx.shadowBlur = Math.max(8, cellSize * 0.5);
           for (let i = 0; i < snake.length; i++) {
             const s = snake[i];
-            // slightly round corners visually for glassy segments
             const pad = Math.max(1, Math.floor(cellSize * 0.08));
             ctx.fillRect(
               s.x + pad,
@@ -921,13 +858,11 @@
           ctx.restore();
         }
 
-        // End game
         function endGame() {
           gameOver = true;
           gameOverMessage.style.display = "block";
         }
 
-        // Main loop (time-based)
         function gameLoop(time = 0) {
           rafId = requestAnimationFrame(gameLoop);
           if (!gameStarted || gameOver) return;
@@ -937,11 +872,8 @@
           if (delta < interval) return;
           lastTime = time;
 
-          // Compute new head
           const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
-          // Wrap or block? user wanted wall collision => block
-          // Check wall collision first
           if (
             head.x < 0 ||
             head.x >= canvas.width ||
@@ -952,25 +884,20 @@
             return;
           }
 
-          // Add head
           snake.unshift(head);
 
-          // Check apple (eating)
           let ate = false;
           if (head.x === apple.x && head.y === apple.y) {
             ate = true;
             score++;
             scoreDisplay.textContent = "Score: " + score;
-            // spawn new apple not on snake
             spawnApple();
           }
 
           if (!ate) {
-            // normal move: remove tail
             snake.pop();
-          } // if ate => snake grows (we did not pop)
+          }
 
-          // Check self-collision (after moving)
           for (let i = 1; i < snake.length; i++) {
             if (head.x === snake[i].x && head.y === snake[i].y) {
               endGame();
@@ -978,13 +905,11 @@
             }
           }
 
-          // Draw everything
           drawBackground();
           drawApple();
           drawSnake();
         }
 
-        // Input handling
         function handleKey(e) {
           if (gameOver) return;
 
@@ -1004,7 +929,6 @@
             gameOverMessage.style.display = "none";
           }
 
-          // prevent reversing direction directly
           if ((key === "arrowleft" || key === "a") && dx === 0) {
             dx = -cellSize;
             dy = 0;
@@ -1023,10 +947,8 @@
           }
         }
 
-        // Attach inputs
         document.addEventListener("keydown", handleKey);
 
-        // Modal open/close behaviors
         function openModal() {
           modal.style.display = "flex";
           disableBodyScroll();
@@ -1035,7 +957,6 @@
         function closeModal() {
           modal.style.display = "none";
           enableBodyScroll();
-          // stop animation frame and reset
           if (rafId) {
             cancelAnimationFrame(rafId);
             rafId = null;
@@ -1045,17 +966,11 @@
         footerCopy && footerCopy.addEventListener("click", openModal);
         closeBtn && closeBtn.addEventListener("click", closeModal);
 
-        // Ensure canvas resizes properly while modal is open
         window.addEventListener("resize", () => {
-          // If modal is open, preserve center and re-init sizes but keep game paused until keypress
           if (modal.style.display === "flex") {
-            // recompute sizes and adapt all positions to new cellSize
-            // Simple approach: re-init game so grid aligns correctly on resize
             initGameState();
           }
         });
-
-        // If modal already open on load, init
         if (modal.style.display === "flex") {
           openModal();
         }
@@ -1065,14 +980,13 @@
     <div
       id="snakeModal"
       style="
-        /* Layout & Overlay: Glassmorphism base */
-        display: none; /* Controlled by JavaScript to show/hide */
+        display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+        background: rgba(0, 0, 0, 0.9);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         justify-content: center;
@@ -1081,30 +995,43 @@
         flex-direction: column;
       "
     >
+      <h2
+        style="
+          color: white;
+          font-family: 'Zalando Sans Expanded', sans-serif;
+          font-weight: 800;
+          font-size: 36px;
+          margin-bottom: 15px;
+          text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        "
+      >
+        NLOC Arcade
+      </h2>
       <canvas
         id="snakeCanvas"
         style="
-          /* Canvas Style */
-          background: #0d0d0d; /* Matching website dark background */
-          border-radius: 20px; /* Rounded corners */
-          border: 1px solid rgba(47, 255, 0, 0.4); /* Green accent border */
-          box-shadow: 0 0 30px rgba(47, 255, 0, 0.2),
-            0 0 10px rgba(47, 255, 0, 0.1); /* Subtle glow */
+          background: #0d0d0d;
+          border-radius: 20px;
+          border: 1px solid rgba(47, 255, 0, 0.5);
+          box-shadow: 0 0 30px rgba(47, 255, 0, 0.5),
+            0 0 10px rgba(47, 255, 0, 0.3);
 
-          /* Responsive sizing */
           width: 90vw;
           max-width: 500px;
           height: 90vw;
           max-height: 500px;
+          margin-bottom: 5px;
         "
       ></canvas>
 
       <p
         id="scoreDisplay"
         style="
-          color: #2fff00; /* Primary accent color */
-          font-family: 'Zalando Sans Expanded', sans-serif; /* Primary website font */
-          font-weight: 600;
+          color: #2fff00;
+          font-family: 'Zalando Sans Expanded', sans-serif;
+          font-weight: 700;
           font-size: 24px;
           margin: 10px 0 5px;
           text-shadow: 0 0 12px #2fff00;
@@ -1117,9 +1044,9 @@
       <p
         id="gameOverMessage"
         style="
-          color: #ff3d3d; /* Red for game over */
+          color: #ff3d3d;
           font-family: 'Zalando Sans Expanded', sans-serif;
-          font-weight: 600;
+          font-weight: 700;
           font-size: 24px;
           margin: 5px 0;
           text-shadow: 0 0 12px #ff3d3d;
@@ -1135,9 +1062,9 @@
           color: white;
           margin-top: 5px;
           font-family: 'Zalando Sans Expanded', sans-serif;
-          font-weight: 600;
+          font-weight: 500;
           font-size: 18px;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
         "
       >
         Press any arrow key (or WASD) to start!
@@ -1146,20 +1073,21 @@
       <button
         id="closeSnake"
         style="
-          /* Button Styling: Matches the primary website button/link hover style */
           margin-top: 15px;
-          padding: 10px 25px;
+          padding: 12px 28px;
           font-size: 18px;
           font-weight: 700;
+          font-family: 'Zalando Sans Expanded', sans-serif;
+          text-transform: uppercase;
 
-          /* Glassmorphism/Interactive Look */
           background: linear-gradient(0deg, #2fff00, #02c52c);
           box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4),
-            0px 0px 10px rgba(0, 255, 60, 0.6);
+            inset 0px -4px 0px rgba(0, 0, 0, 0.2),
+            0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px #00ff3c;
 
           color: #0d0d0d;
           border: none;
-          border-radius: 12px;
+          border-radius: 30px;
           cursor: pointer;
           transition: all 0.3s ease-in-out;
         "
