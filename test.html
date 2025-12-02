@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact NLOC Labs</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #0d0d0d;
+        color: white;
+        padding: 40px;
+      }
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 600px;
+      }
+      input,
+      textarea {
+        padding: 15px;
+        border-radius: 8px;
+        border: none;
+        background: #222;
+        color: white;
+      }
+      button {
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        background: #2fff00;
+        color: #0d0d0d;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .status-message {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Send Message to Novak</h2>
+    <form class="contact-form" onsubmit="submitMessage(event)">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <p id="status" class="status-message" style="display: none"></p>
+
+    <script>
+      const GOOGLE_SCRIPT_URL =
+        "https://script.google.com/macros/s/AKfycbzDkHvLeOVjcCAOCtoMFp3DVZeDUkM_1K-DFP3b0PgO34xhNEIlQQhMr3E5CC_zgem5/exec";
+
+      async function submitMessage(event) {
+        event.preventDefault();
+        const statusElement = document.getElementById("status");
+        const form = document.querySelector(".contact-form");
+        statusElement.style.display = "block";
+        statusElement.style.color = "#ccc";
+        statusElement.textContent = "Sending message...";
+
+        const payload = {
+          senderName: document.getElementById("name").value,
+          senderEmail: document.getElementById("email").value,
+          messageContent: document.getElementById("message").value,
+          timestamp: new Date().toISOString(),
+        };
+
+        try {
+          const response = await fetch(GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.result === "success") {
+            statusElement.textContent = "Message successfully sent!";
+            statusElement.style.color = "#2fff00";
+            form.reset();
+          } else {
+            statusElement.textContent = "Submission failed. Check console.";
+            statusElement.style.color = "#ff0000";
+            console.error(result);
+          }
+        } catch (error) {
+          statusElement.textContent = "Network error. Check console.";
+          statusElement.style.color = "#ff0000";
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NLOC Labs | Products</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0d0d0d;
+        font-family: Zalando Sans Expanded, sans-serif;
+        color: white;
+        overflow-x: hidden;
+      }
+
+      /* NAVBAR (Styling retained) */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 8px 18px;
+      }
+
+      .logo-container img {
+        /* Placeholder for NLOC Labs.png */
+        height: 32px;
+        width: auto;
+      }
+
+      .nav-links-container {
+        display: flex;
+        gap: 20px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 8px 20px;
+      }
+
+      .nav-links-container a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 30px;
+        transition: all 450ms ease-in-out;
+      }
+
+      .nav-links-container a:hover {
+        background: linear-gradient(0deg, #2fff00, #02c52c);
+        box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4),
+          inset 0px -4px 0px rgba(0, 0, 0, 0.2),
+          0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px #00ff3c;
+        transform: translateY(-2px);
+        color: white !important;
+      }
+
+      /* DESKTOP/LARGE SCREEN STYLES (Base) */
+
+      /* Extra Section Header */
+      .extra-section {
+        margin-top: 80px;
+        min-height: 200px;
+        padding: 80px 50px 40px 50px;
+        background: #0d0d0d;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .extra-section h1 {
+        font-size: 40px; /* Base size */
+        font-weight: 900;
+        margin-bottom: 40px;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .extra-section p {
+        font-size: 20px; /* Base size */
+        line-height: 1.8;
+        max-width: 1200px;
+        color: #ccc;
+      }
+
+      .extra-section p strong {
+        color: #2fff00;
+        font-weight: 800;
+      }
+
+      /* Product Grid Layout */
+      .products-grid {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns on desktop */
+        gap: 40px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+      }
+
+      /* Card Styling */
+      .products-grid .card {
+        min-height: 450px;
+        border-radius: 16px;
+        background-color: #141414;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .products-grid .card:hover {
+        transform: translateY(-10px);
+        /* Green hover shadow */
+        box-shadow: 0 20px 50px rgba(0, 255, 60, 0.3);
+      }
+
+      /* Hover adjustments for specific pins to match color */
+      .products-grid .card.totara:hover {
+        box-shadow: 0 20px 50px rgba(255, 120, 0, 0.4); /* Orange shadow */
+      }
+      .products-grid .card.kowhai:hover {
+        box-shadow: 0 20px 50px rgba(255, 255, 0, 0.4); /* Yellow shadow */
+      }
+      .products-grid .card.matai:hover {
+        box-shadow: 0 20px 50px rgba(100, 150, 255, 0.25); /* Blue/Silver shadow */
+      }
+
+      .card .card__image {
+        height: 200px !important;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        border-radius: 16px 16px 0 0;
+        /* Default style for image placeholder text */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* Specific text style adjustments for white/light pins */
+      .card.kowhai .card__image {
+        color: #333; /* Darker text for yellow background */
+      }
+      .card.matai .card__image {
+        color: #333; /* Darker text for white background */
+      }
+
+      .card .card__content {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 12px;
+      }
+
+      .card h2 {
+        font-size: 32px; /* Base size for card title */
+        font-weight: 700;
+        color: #fff;
+        text-transform: capitalize;
+        margin: 0;
+      }
+
+      .card p {
+        font-size: 18px; /* Base size for card description */
+        color: #ccc;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      /* NEW: Price Tag Styling */
+      .card__price {
+        margin-top: auto; /* Push price to the bottom */
+        font-size: 36px;
+        font-weight: 900;
+        color: #2fff00; /* Green/Neon color for visibility */
+        letter-spacing: 1px;
+        padding-top: 15px;
+      }
+
+      /* Color adjustments for prices */
+      .card.totara .card__price {
+        color: #ff8c00;
+      } /* Darker Orange */
+      .card.kowhai .card__price {
+        color: #ffdd00;
+      } /* Bright Yellow */
+      .card.matai .card__price {
+        color: #87cefa;
+      } /* Light Blue (to contrast with white pin) */
+
+      /* FOOTER (Styling retained) */
+      .footer {
+        width: 100%;
+        padding: 50px 20px;
+        background: rgba(255, 255, 255, 0.06);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        margin-top: 100px;
+      }
+
+      .footer-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .footer-logo {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: 2px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        font-size: 18px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+      }
+
+      .footer-links a:hover {
+        color: #2fff00;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+        color: #999;
+        margin-top: 10px;
+      }
+
+      .footer-logo-img {
+        width: 100px;
+        margin-bottom: 10px;
+      }
+
+      /* NEW: Safety Warning Section Styling */
+      .safety-section {
+        padding: 60px 50px;
+        background: #1a0000; /* Dark red/danger background */
+        border-top: 5px solid #ff0000;
+        border-bottom: 5px solid #ff0000;
+        color: #ffcccc;
+        font-family: "Zalando Sans Expanded", sans-serif;
+        text-align: center;
+        margin: 40px 0;
+      }
+
+      .safety-section h2 {
+        color: #ff0000; /* Bright red title */
+        font-size: 36px;
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+      }
+
+      .safety-section p {
+        font-size: 18px;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto 20px auto;
+        font-weight: 500;
+      }
+
+      .safety-section ul {
+        list-style: none;
+        padding: 0;
+        max-width: 700px;
+        margin: 20px auto 0 auto;
+        text-align: left;
+      }
+
+      .safety-section ul li {
+        background: rgba(255, 0, 0, 0.1);
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-left: 4px solid #ff0000;
+        font-size: 16px;
+      }
+
+      .safety-section ul li strong {
+        color: #ff0000;
+        margin-right: 8px;
+      }
+
+      .navbartext {
+        color: white;
+        font-style: normal;
+        text-decoration: none;
+      }
+
+      /* MOBILE SPECIFIC ADJUSTMENTS (Max width 768px) */
+      @media (max-width: 768px) {
+        /* Layout Adjustments */
+        .products-grid {
+          grid-template-columns: 1fr; /* Single column on mobile */
+          gap: 25px;
+        }
+
+        /* Navbar Text Size */
+        .logo-container span {
+          font-size: 20px !important;
+        }
+        .nav-links-container a {
+          font-size: 14px;
+          padding: 10px 15px;
+        }
+        .navbar {
+          padding: 8px 10px;
+        }
+
+        /* Header (Extra Section) Font Sizes */
+        .extra-section {
+          padding: 40px 20px 20px 20px; /* Reduced padding on mobile */
+        }
+        .extra-section h1 {
+          font-size: 32px; /* Reduced major heading size */
+          margin-bottom: 20px;
+        }
+        .extra-section p {
+          font-size: 16px; /* Reduced paragraph size */
+          line-height: 1.6;
+        }
+
+        /* Card Font Sizes */
+        .card .card__content {
+          padding: 15px; /* Reduced card padding */
+          gap: 8px;
+        }
+        .card h2 {
+          font-size: 24px; /* Reduced card title size */
+        }
+        .card p {
+          font-size: 15px; /* Reduced card description size */
+        }
+
+        /* NEW: Mobile Price Tag Size */
+        .card__price {
+          font-size: 28px; /* Adjusted price size for mobile */
+          padding-top: 10px;
+        }
+      }
+
+      /* NEW: Safety Section Mobile Adjustments */
+      .safety-section h2 {
+        font-size: 28px;
+      }
+      .safety-section p {
+        font-size: 16px;
+      }
+      .safety-section ul li {
+        font-size: 14px;
+      }
+
+      .footer-content {
+        max-width: 1300px;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .footer-logo {
+        font-size: 32px;
+        font-weight: 900;
+        letter-spacing: 2px;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        color: #ccc;
+        font-size: 18px;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+      }
+
+      .footer-links a:hover {
+        color: #2fff00;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+        color: #999;
+        margin-top: 10px;
+      }
+
+      .footer-logo-img {
+        width: 100px;
+        margin-bottom: 10px;
+      }
+
+      .navbartext {
+        color: white;
+        font-style: normal;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar placeholder assumes 'NLOC Labs.png' exists in the environment -->
+    <div class="navbar">
+      <div class="logo-container">
+        <a href="index.html"
+          ><img
+            src="NLOC Labs.png"
+            onerror="this.src='https://placehold.co/32x32/141414/ffffff?text=NL'"
+            alt="NLOC Labs Logo"
+        /></a>
+        <a class="navbartext" href="index.html"
+          ><span style="font-size: 25px; font-weight: bold">NLOC Labs</span></a
+        >
+      </div>
+
+      <div class="nav-links-container">
+        <a href="products.html">Products</a>
+        <a href="">Winning House</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+
+    <!-- Intro Section: Based on the "Product Page Intro" content -->
+    <section class="extra-section">
+      <h1>Our Products.</h1>
+      <p>
+        Explore the full collection of NLOC Labs Team Pins, where your loyalty
+        takes a definitive, high-tech form. Designed for every community and
+        affiliation, each pin in this collection represents a unique team and is
+        engineered with our signature magnetic connection, ensuring all-day
+        comfort and security. More importantly, every distinct pin you purchase
+        is an immediate and tangible contribution, instantly channeling points
+        to your chosen team's global score. Browse the designs below, find your
+        colors, and get ready to
+        <strong>show your team with newfound pride.</strong>
+      </p>
+    </section>
+
+    <!-- Product Grid Section -->
+    <section>
+      <div class="products-grid">
+        <!-- 1. Kauri Pin (Green) -->
+        <div class="card kauri">
+          <div
+            class="card__image"
+            style="
+              /* Vibrant Green Gradient */
+              background-image: url(kauripin.png);
+            "
+          ></div>
+          <div class="card__content">
+            <h2>Kauri Pin</h2>
+            <p>
+              The Kauri Pin represents strength, legacy, and timeless
+              craftsmanship — inspired by the legendary Kauri tree.
+            </p>
+            <div class="card__price">$0.50</div>
+          </div>
+        </div>
+
+        <!-- 2. Totara Pin (Orange) -->
+        <div class="card totara">
+          <div
+            class="card__image"
+            style="
+              /* Deep Orange Gradient */
+              background-image: url(totarapin.png);
+            "
+          ></div>
+          <div class="card__content">
+            <h2>Totara Pin</h2>
+            <p>
+              The Totara Pin symbolises leadership and resilience, crafted to
+              embody one of nature's most respected giants.
+            </p>
+            <div class="card__price">$0.50</div>
+          </div>
+        </div>
+
+        <!-- 3. Kowhai Pin (Yellow) -->
+        <div class="card kowhai">
+          <div
+            class="card__image"
+            style="
+              /* Sunny Yellow Gradient (Light background) */
+              background-image: url(kowhaipin.png);
+            "
+          ></div>
+          <div class="card__content">
+            <h2>Kowhai Pin</h2>
+            <p>
+              The Kowhai Pin celebrates growth and creativity, inspired by the
+              golden blooms found throughout Aotearoa.
+            </p>
+            <div class="card__price">$0.50</div>
+          </div>
+        </div>
+
+        <!-- 4. Matai Pin (White/Blue) -->
+        <div class="card matai">
+          <div
+            class="card__image"
+            style="
+              /* Metallic White/Silver Gradient (to show up on dark background) */
+              background-image: url(mataipin.png);
+            "
+          ></div>
+          <div class="card__content">
+            <h2>Matai Pin</h2>
+            <p>
+              The Matai Pin represents sophistication and endurance, reflecting
+              the deep, rich character of the Matai tree.
+            </p>
+            <div class="card__price">$0.50</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Safety Warning Section -->
+    <section class="safety-section">
+      <h2>Product Safety and Compliance Notice</h2>
+      <p>
+        Please read and adhere to all guidelines regarding the use and storage
+        of NLOC Labs products. Failure to follow these warnings may result in
+        injury or property damage.
+      </p>
+      <ul>
+        <li>
+          <strong>CHOKING HAZARD:</strong> This product contains small parts
+          (the pin and magnetic backing) and is not a toy. It is **not suitable
+          for children under 3 years** of age. Keep out of reach of infants and
+          small children.
+        </li>
+        <li>
+          <strong>MAGNET WARNING:</strong> This product contains small magnets.
+          Swallowed magnets can stick together across intestines causing serious
+          infections and death. Seek immediate medical attention if magnets are
+          swallowed or inhaled.
+        </li>
+        <li>
+          <strong>PACEMAKER WARNING:</strong> The strong magnets in this product
+          may interfere with the function of pacemakers, ICDs, and other medical
+          devices. Keep pins at least six (6) inches away from these devices.
+          Consult a physician before use if you have any medical implant.
+        </li>
+        <li>
+          <strong>GENERAL USE:</strong> Do not use this product if damaged.
+          Store the pin and backing securely when not in use.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <a href="index.html"
+            ><img
+              src="NLOC Labs.png"
+              onerror="this.src='https://placehold.co/100x32/141414/ffffff?text=NL'"
+              alt="NLOC Logo"
+              class="footer-logo-img"
+          /></a>
+          <a class="navbartext" href="index.html"
+            ><p class="footer-logo">NLOC Labs</p></a
+          >
+        </div>
+
+        <div class="footer-links">
+          <a href="products.html">Products</a>
+          <a href="#">Winning House</a>
+          <a href="about.html">About</a>
+          <a href="#">Contact</a>
+          <a href="privacypolicy.html">Privacy Policy</a>
+        </div>
+
+        <p class="footer-copy">© 2025 NLOC Labs. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
