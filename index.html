@@ -765,5 +765,407 @@
       window.addEventListener("scroll", updateHorizontalScroll);
       window.addEventListener("resize", updateHorizontalScroll);
     </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // UI elements (assumes these exist in your HTML)
+        const footerCopy = document.querySelector(".footer-copy");
+        const modal = document.getElementById("snakeModal");
+        const canvas = document.getElementById("snakeCanvas");
+        const ctx = canvas.getContext("2d");
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        const gameOverMessage = document.getElementById("gameOverMessage");
+        const closeBtn = document.getElementById("closeSnake");
+
+        // Settings
+        const SPEED = 9; // moves per second (user requested)
+        const GRID_COUNT = 25; // 25x25 grid for medium square
+        const MAX_SIZE = 600; // maximum px for big screens
+        const PADDING = 40; // page padding used when sizing modal canvas
+
+        // Game state (will be reinitialized)
+        let cellSize, canvasSize;
+        let snake, dx, dy, apple, score;
+        let gameStarted, gameOver;
+        let rafId = null;
+        let lastTime = 0;
+
+        // Prevent body scroll when modal open
+        function disableBodyScroll() {
+          document.body.style.overflow = "hidden";
+        }
+        function enableBodyScroll() {
+          document.body.style.overflow = "";
+        }
+
+        // Resize canvas so it is square and fits viewport; ensure it's an integer multiple of grid
+        function resizeCanvasToFit() {
+          // medium square: use 80% width but respect height and max size
+          const availableW = window.innerWidth - PADDING;
+          const availableH = window.innerHeight - PADDING;
+          const preferred = Math.min(
+            availableW * 0.9,
+            availableH * 0.8,
+            MAX_SIZE
+          );
+
+          // compute cellSize as floor(preferred / GRID_COUNT) so grid fits exactly
+          const cs = Math.max(4, Math.floor(preferred / GRID_COUNT)); // minimum cell size 4px
+          const size = cs * GRID_COUNT;
+
+          cellSize = cs;
+          canvasSize = size;
+          canvas.width = canvasSize;
+          canvas.height = canvasSize;
+
+          // optional: style to center visually (your modal CSS already handles this)
+          canvas.style.width = canvasSize + "px";
+          canvas.style.height = canvasSize + "px";
+        }
+
+        // Spawn apple in a cell not occupied by snake
+        function spawnApple() {
+          const cols = canvas.width / cellSize;
+          const rows = canvas.height / cellSize;
+          let tries = 0;
+          while (true) {
+            const ax = Math.floor(Math.random() * cols) * cellSize;
+            const ay = Math.floor(Math.random() * rows) * cellSize;
+            // Ensure not on snake
+            let collision = false;
+            for (let seg of snake) {
+              if (seg.x === ax && seg.y === ay) {
+                collision = true;
+                break;
+              }
+            }
+            if (!collision) {
+              apple = { x: ax, y: ay };
+              return;
+            }
+            tries++;
+            if (tries > 500) {
+              // Safety fallback: if board is nearly full, just place anyway
+              apple = { x: ax, y: ay };
+              return;
+            }
+          }
+        }
+
+        // Initialize or reset game state
+        function initGameState() {
+          resizeCanvasToFit();
+          // start snake with a single centered segment
+          snake = [];
+          const startX = Math.floor(GRID_COUNT / 2) * cellSize;
+          const startY = Math.floor(GRID_COUNT / 2) * cellSize;
+          snake.push({ x: startX, y: startY });
+
+          // initial direction: stationary until first keypress
+          dx = 0;
+          dy = 0;
+
+          score = 0;
+          scoreDisplay.textContent = "Score: 0";
+          gameStarted = false;
+          gameOver = false;
+          gameOverMessage.style.display = "none";
+
+          spawnApple();
+
+          lastTime = 0;
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+          rafId = requestAnimationFrame(gameLoop);
+        }
+
+        // Clear shadows when not drawing neon elements
+        function clearShadows() {
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = "transparent";
+        }
+
+        // Draw functions
+        function drawBackground() {
+          ctx.fillStyle = "#000";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawApple() {
+          ctx.save();
+          ctx.fillStyle = "#2fff00";
+          ctx.shadowColor = "#2fff00";
+          ctx.shadowBlur = Math.max(8, cellSize * 0.6);
+          ctx.fillRect(apple.x + 1, apple.y + 1, cellSize - 2, cellSize - 2);
+          ctx.restore();
+        }
+
+        function drawSnake() {
+          ctx.save();
+          ctx.fillStyle = "#2fff00";
+          ctx.shadowColor = "#2fff00";
+          ctx.shadowBlur = Math.max(8, cellSize * 0.5);
+          for (let i = 0; i < snake.length; i++) {
+            const s = snake[i];
+            // slightly round corners visually for glassy segments
+            const pad = Math.max(1, Math.floor(cellSize * 0.08));
+            ctx.fillRect(
+              s.x + pad,
+              s.y + pad,
+              cellSize - pad * 2,
+              cellSize - pad * 2
+            );
+          }
+          ctx.restore();
+        }
+
+        // End game
+        function endGame() {
+          gameOver = true;
+          gameOverMessage.style.display = "block";
+        }
+
+        // Main loop (time-based)
+        function gameLoop(time = 0) {
+          rafId = requestAnimationFrame(gameLoop);
+          if (!gameStarted || gameOver) return;
+
+          const interval = 1000 / SPEED;
+          const delta = time - lastTime;
+          if (delta < interval) return;
+          lastTime = time;
+
+          // Compute new head
+          const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+          // Wrap or block? user wanted wall collision => block
+          // Check wall collision first
+          if (
+            head.x < 0 ||
+            head.x >= canvas.width ||
+            head.y < 0 ||
+            head.y >= canvas.height
+          ) {
+            endGame();
+            return;
+          }
+
+          // Add head
+          snake.unshift(head);
+
+          // Check apple (eating)
+          let ate = false;
+          if (head.x === apple.x && head.y === apple.y) {
+            ate = true;
+            score++;
+            scoreDisplay.textContent = "Score: " + score;
+            // spawn new apple not on snake
+            spawnApple();
+          }
+
+          if (!ate) {
+            // normal move: remove tail
+            snake.pop();
+          } // if ate => snake grows (we did not pop)
+
+          // Check self-collision (after moving)
+          for (let i = 1; i < snake.length; i++) {
+            if (head.x === snake[i].x && head.y === snake[i].y) {
+              endGame();
+              return;
+            }
+          }
+
+          // Draw everything
+          drawBackground();
+          drawApple();
+          drawSnake();
+        }
+
+        // Input handling
+        function handleKey(e) {
+          if (gameOver) return;
+
+          const key = e.key.toLowerCase();
+          const moveKeys = [
+            "arrowleft",
+            "arrowup",
+            "arrowright",
+            "arrowdown",
+            "a",
+            "w",
+            "d",
+            "s",
+          ];
+          if (!gameStarted && moveKeys.includes(key)) {
+            gameStarted = true;
+            gameOverMessage.style.display = "none";
+          }
+
+          // prevent reversing direction directly
+          if ((key === "arrowleft" || key === "a") && dx === 0) {
+            dx = -cellSize;
+            dy = 0;
+          }
+          if ((key === "arrowright" || key === "d") && dx === 0) {
+            dx = cellSize;
+            dy = 0;
+          }
+          if ((key === "arrowup" || key === "w") && dy === 0) {
+            dx = 0;
+            dy = -cellSize;
+          }
+          if ((key === "arrowdown" || key === "s") && dy === 0) {
+            dx = 0;
+            dy = cellSize;
+          }
+        }
+
+        // Attach inputs
+        document.addEventListener("keydown", handleKey);
+
+        // Modal open/close behaviors
+        function openModal() {
+          modal.style.display = "flex";
+          disableBodyScroll();
+          initGameState();
+        }
+        function closeModal() {
+          modal.style.display = "none";
+          enableBodyScroll();
+          // stop animation frame and reset
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        }
+
+        footerCopy && footerCopy.addEventListener("click", openModal);
+        closeBtn && closeBtn.addEventListener("click", closeModal);
+
+        // Ensure canvas resizes properly while modal is open
+        window.addEventListener("resize", () => {
+          // If modal is open, preserve center and re-init sizes but keep game paused until keypress
+          if (modal.style.display === "flex") {
+            // recompute sizes and adapt all positions to new cellSize
+            // Simple approach: re-init game so grid aligns correctly on resize
+            initGameState();
+          }
+        });
+
+        // If modal already open on load, init
+        if (modal.style.display === "flex") {
+          openModal();
+        }
+      });
+    </script>
+
+    <div
+      id="snakeModal"
+      style="
+        /* Layout & Overlay: Glassmorphism base */
+        display: none; /* Controlled by JavaScript to show/hide */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9); /* Dark overlay */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+      "
+    >
+      <canvas
+        id="snakeCanvas"
+        style="
+          /* Canvas Style */
+          background: #0d0d0d; /* Matching website dark background */
+          border-radius: 20px; /* Rounded corners */
+          border: 1px solid rgba(47, 255, 0, 0.4); /* Green accent border */
+          box-shadow: 0 0 30px rgba(47, 255, 0, 0.2),
+            0 0 10px rgba(47, 255, 0, 0.1); /* Subtle glow */
+
+          /* Responsive sizing */
+          width: 90vw;
+          max-width: 500px;
+          height: 90vw;
+          max-height: 500px;
+        "
+      ></canvas>
+
+      <p
+        id="scoreDisplay"
+        style="
+          color: #2fff00; /* Primary accent color */
+          font-family: 'Zalando Sans Expanded', sans-serif; /* Primary website font */
+          font-weight: 600;
+          font-size: 24px;
+          margin: 10px 0 5px;
+          text-shadow: 0 0 12px #2fff00;
+          letter-spacing: 1px;
+        "
+      >
+        Score: 0
+      </p>
+
+      <p
+        id="gameOverMessage"
+        style="
+          color: #ff3d3d; /* Red for game over */
+          font-family: 'Zalando Sans Expanded', sans-serif;
+          font-weight: 600;
+          font-size: 24px;
+          margin: 5px 0;
+          text-shadow: 0 0 12px #ff3d3d;
+          display: none;
+          letter-spacing: 1px;
+        "
+      >
+        Game Over!
+      </p>
+
+      <p
+        style="
+          color: white;
+          margin-top: 5px;
+          font-family: 'Zalando Sans Expanded', sans-serif;
+          font-weight: 600;
+          font-size: 18px;
+          letter-spacing: 1px;
+        "
+      >
+        Press any arrow key (or WASD) to start!
+      </p>
+
+      <button
+        id="closeSnake"
+        style="
+          /* Button Styling: Matches the primary website button/link hover style */
+          margin-top: 15px;
+          padding: 10px 25px;
+          font-size: 18px;
+          font-weight: 700;
+
+          /* Glassmorphism/Interactive Look */
+          background: linear-gradient(0deg, #2fff00, #02c52c);
+          box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.4),
+            0px 0px 10px rgba(0, 255, 60, 0.6);
+
+          color: #0d0d0d;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+        "
+      >
+        Close Game
+      </button>
+    </div>
   </body>
 </html>
